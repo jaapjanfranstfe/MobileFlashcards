@@ -17,7 +17,8 @@ export function deleteDeck(deckId) {
 
 export async function loadDecks() {
     const decksFromStorage = await AsyncStorage.getItem(DECKS);
-    decks = decksFromStorage;
 
-    return decksFromStorage;
+    decks = decksFromStorage === null ? {} : decksFromStorage;
+
+    return decks;
 }
