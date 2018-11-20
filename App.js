@@ -3,16 +3,14 @@ import { StyleSheet, Text, View , StatusBar} from 'react-native';
 import {handleInitialDecks} from "./actions/decks";
 import {connect, Provider} from "react-redux";
 import { createStore } from 'redux';
-import decksReducer from "./reducers/decks";
 import middleware from "./middleware/index";
-import {Constants} from "expo"
+import reducers from "./reducers/index"
 import {createAppContainer, createStackNavigator} from 'react-navigation';
-import { Entypo } from '@expo/vector-icons'
 
 
 import DeckList from "./components/DeckList";
 
-const store = createStore(decksReducer, middleware);
+const store = createStore(reducers, middleware);
 
 
 const MainNavigator = createStackNavigator({
@@ -37,9 +35,10 @@ export default class App extends React.Component {
         });
         this.setState({ isReady: true });
     }
+
     componentDidMount() {
       store.dispatch(handleInitialDecks())
-  }
+    }
 
   render() {
       if (!this.state.isReady) {

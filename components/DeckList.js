@@ -1,32 +1,48 @@
 import {connect} from "react-redux";
 import React from 'react';
+import NoDecks from './NoDecks'
+
 import {
     Text,
     Container,
     Card,
     CardItem,
     Content,
-    Right,
-    Icon,
-    Button
+    Body,
+    Button,
 } from "native-base";
 
 class DeckList extends React.Component {
 
     render() {
+        const { decks } = this.props;
+        const decksArray = Object.values(decks);
+
         return (
             <Container>
                 <Content padder>
-                    <Card>
-                        <CardItem>
-                            <Icon active name="paper-plane" />
-                            <Text>a card!</Text>
-                            <Right>
-                                <Icon name="close" />
-                            </Right>
-                        </CardItem>
-                    </Card>
+                    { decksArray.length === 0 &&
+                        <NoDecks/>
+                    }
+                    { decksArray.map(deck => (
+                        <Card key={deck.id}>
+                            <CardItem>
+                                <Body>
+                                    <Text>{ deck.name }</Text>
+                                </Body>
+                            </CardItem>
+                        </Card>
+                    ))}
 
+                    <Button
+                        full
+                        rounded
+                        primary
+                        style={{ marginTop: 10 }}
+                        onPress={() => this.props.navigation.navigate("EditScreenOne")}
+                    >
+                        <Text>Goto EditScreen One</Text>
+                    </Button>
                 </Content>
             </Container>
         );
