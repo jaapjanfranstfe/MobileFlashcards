@@ -20,30 +20,33 @@ class DeckList extends React.Component {
 
         return (
             <Container>
-                <Content padder>
-                    { decksArray.length === 0 &&
-                        <NoDecks/>
-                    }
-                    { decksArray.map(deck => (
-                        <Card key={deck.id}>
-                            <CardItem>
-                                <Body>
-                                    <Text>{ deck.name }</Text>
-                                </Body>
-                            </CardItem>
-                        </Card>
-                    ))}
+                { decksArray.length === 0 &&
+                <NoDecks/>
+                }
 
-                    <Button
-                        full
-                        rounded
-                        primary
-                        style={{ marginTop: 10 }}
-                        onPress={() => this.props.navigation.navigate("EditScreenOne")}
-                    >
-                        <Text>Goto EditScreen One</Text>
-                    </Button>
-                </Content>
+                {decksArray.length > 0 &&
+                    <Content padder>
+                        {decksArray.map(deck => (
+                            <Card key={deck.id}>
+                                <CardItem>
+                                    <Body>
+                                    <Text>{deck.name}</Text>
+                                    </Body>
+                                </CardItem>
+                            </Card>
+                        ))}
+
+                        <Button
+                            full
+                            rounded
+                            primary
+                            style={{marginTop: 10}}
+                            onPress={() => this.props.navigation.navigate("EditScreenOne")}
+                        >
+                            <Text>Goto EditScreen One</Text>
+                        </Button>
+                    </Content>
+                }
             </Container>
         );
     }
