@@ -8,7 +8,8 @@ import {
     CardItem,
     Content,
     Body,
-    Button,
+    Fab,
+    Icon,View
 } from "native-base";
 
 class DeckList extends React.Component {
@@ -19,21 +20,29 @@ class DeckList extends React.Component {
 
         return (
             <Container>
-                <Content padder>
-                { decksArray.length === 0 &&
-                    <Text>No decks. Create your first deck!</Text>
-                }
+                <Content padder  style={{ flex: 1 }}>
+                    { decksArray.length === 0 &&
+                        <Text>No decks. Create your first deck!</Text>
+                    }
 
-                {decksArray.map(deck => (
-                    <Card key={deck.id}>
-                        <CardItem>
-                            <Body>
-                            <Text>{deck.name}</Text>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                ))}
+                    {decksArray.map(deck => (
+                        <Card key={deck.id}>
+                            <CardItem>
+                                <Body>
+                                <Text>{deck.name}</Text>
+                                </Body>
+                            </CardItem>
+                        </Card>
+                    ))}
+
                 </Content>
+
+                <Fab
+                    style={{ backgroundColor: '#5067FF' }}
+                    position="bottomRight"
+                    onPress={() => console.log('oresse')}>
+                    <Icon name="add" />
+                </Fab>
             </Container>
         );
     }
