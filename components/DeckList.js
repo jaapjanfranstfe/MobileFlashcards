@@ -1,6 +1,5 @@
 import {connect} from "react-redux";
 import React from 'react';
-import NoDecks from './NoDecks'
 
 import {
     Text,
@@ -20,33 +19,21 @@ class DeckList extends React.Component {
 
         return (
             <Container>
+                <Content padder>
                 { decksArray.length === 0 &&
-                <NoDecks/>
+                    <Text>No decks. Create your first deck!</Text>
                 }
 
-                {decksArray.length > 0 &&
-                    <Content padder>
-                        {decksArray.map(deck => (
-                            <Card key={deck.id}>
-                                <CardItem>
-                                    <Body>
-                                    <Text>{deck.name}</Text>
-                                    </Body>
-                                </CardItem>
-                            </Card>
-                        ))}
-
-                        <Button
-                            full
-                            rounded
-                            primary
-                            style={{marginTop: 10}}
-                            onPress={() => this.props.navigation.navigate("EditScreenOne")}
-                        >
-                            <Text>Goto EditScreen One</Text>
-                        </Button>
-                    </Content>
-                }
+                {decksArray.map(deck => (
+                    <Card key={deck.id}>
+                        <CardItem>
+                            <Body>
+                            <Text>{deck.name}</Text>
+                            </Body>
+                        </CardItem>
+                    </Card>
+                ))}
+                </Content>
             </Container>
         );
     }
