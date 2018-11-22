@@ -1,0 +1,55 @@
+import { saveDeck, deleteDeck, loadDecks } from "../storage/decks";
+import uuidv1 from "uuid/v1"
+
+export const RECEIVE_DECKS = 'RECEIVE_DECKS';
+export const ADD_DECK = 'ADD_DECK';
+export const REMOVE_DECK = 'REMOVE_DECK';
+
+function receiveDecks(decks) {
+    return {
+        type: RECEIVE_DECKS,
+        decks,
+    }
+}
+
+export function handleInitialDecks() {
+    return (dispatch) => {
+        return loadDecks()
+            .then((decks) => dispatch(receiveDecks(decks)));
+    }
+}
+
+function addDeck(deck) {
+    return {
+        type: ADD_DECK,
+        deck,
+    }
+}
+
+export function handleAddDeck(title) {
+    const id = uuidv1();
+
+    const deck = {
+        id: id,
+        title: title,
+    };
+
+    return (dispatch) => {
+        return saveDeck(deck)
+            .then(() => dispatch(addDeck(deck)));
+    }
+}
+
+function removeDeck(deckId) {
+    return {
+        type: REMOVE_DECK,
+        deckId
+    }
+}
+
+export function handleRemoveDeck(deckId) {
+    return (dispatch) => {
+        return deleteDeck(deckId)
+            .then(() => dispatch(removeDeck(deckId)));
+    }
+}
