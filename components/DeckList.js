@@ -15,12 +15,12 @@ import {
 class DeckList extends React.Component {
 
     render() {
-        const { decks } = this.props;
+        const { decks, navigation } = this.props;
         const decksArray = Object.values(decks);
 
         return (
             <Container>
-                <Content padder  style={{ flex: 1 }}>
+                <Content padder>
                     { decksArray.length === 0 &&
                         <Text>No decks. Create your first deck!</Text>
                     }
@@ -29,7 +29,7 @@ class DeckList extends React.Component {
                         <Card key={deck.id}>
                             <CardItem>
                                 <Body>
-                                <Text>{deck.name}</Text>
+                                <Text>{deck.title}</Text>
                                 </Body>
                             </CardItem>
                         </Card>
@@ -40,7 +40,7 @@ class DeckList extends React.Component {
                 <Fab
                     style={{ backgroundColor: '#5067FF' }}
                     position="bottomRight"
-                    onPress={() => console.log('oresse')}>
+                    onPress={() => navigation.navigate('AddDeck')}>
                     <Icon name="add" />
                 </Fab>
             </Container>

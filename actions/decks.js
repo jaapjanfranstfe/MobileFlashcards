@@ -1,4 +1,5 @@
 import { saveDeck, deleteDeck, loadDecks } from "../storage/decks";
+import uuidv1 from "uuid/v1"
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const ADD_DECK = 'ADD_DECK';
@@ -25,10 +26,17 @@ function addDeck(deck) {
     }
 }
 
-export function handleAddDeck(deck) {
+export function handleAddDeck(title) {
+    const id = uuidv1();
+
+    const deck = {
+        id: id,
+        title: title,
+    };
+
     return (dispatch) => {
         return saveDeck(deck)
-            .then((savedDeck) => dispatch(addDeck(savedDeck)));
+            .then(() => dispatch(addDeck(deck)));
     }
 }
 

@@ -9,16 +9,22 @@ import {createAppContainer, createStackNavigator} from 'react-navigation';
 
 
 import DeckList from "./components/DeckList";
+import AddDeck from "./components/AddDeck";
 
 const store = createStore(reducers, middleware);
 
 
 const MainNavigator = createStackNavigator({
-        Home: {
+        DeckList: {
             screen: DeckList,
         },
-
-    });
+        AddDeck: {
+            screen: AddDeck,
+        },
+    },
+{
+    initialRouteName: 'DeckList'
+});
 
 const AppContainer = createAppContainer(MainNavigator);
 
