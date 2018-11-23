@@ -2,12 +2,6 @@ import {ADD_DECK, ADD_DECK_QUESTION, RECEIVE_DECKS, REMOVE_DECK} from "../action
 // DEEP COPY CREATE, FIND POUT WHERE SAVE DECK FROM STORAGE IS USED INSTEAD OF FROM STORE
 export default function decks (state = {}, action) {
     switch (action.type) {
-        case RECEIVE_DECKS: {
-            return {
-                ...state,
-                ...action.decks
-            };
-        }
         case ADD_DECK: {
             const {deck} = action;
 
@@ -17,23 +11,21 @@ export default function decks (state = {}, action) {
             };
         }
         case ADD_DECK_QUESTION: {
-            const {deckQuestion} = action;
+            const {question, deckId} = action;
 
-            // expand the deck for given id into a new deck object
             const deck = {
-                ...state[deckQuestion.deckId]
+                ...state[deckId]
             };
 
-            // copy array then push new question on it
-            const newQuestions = [...deck.questions];
-            newQuestions.push(deckQuestion);
+            const newQuestions = {
+                ...deck.questions
+            };
+            newQuestions[question.id] = question;
+            deck.questions = newQuestions;
 
             return {
                 ...state,
-                [deck.id]: {
-                    ...deck,
-                    questions: newQuestions
-                }
+                [deck.id]: deck
             };
         }
         case REMOVE_DECK: {

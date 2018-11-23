@@ -1,10 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View , StatusBar} from 'react-native';
-import {handleInitialDecks} from "./actions/decks";
-import {connect, Provider} from "react-redux";
-import { createStore } from 'redux';
-import middleware from "./middleware/index";
-import reducers from "./reducers/index"
+import { StyleSheet, View } from 'react-native';
+import {Provider} from "react-redux";
+import { PersistGate } from 'redux-persist/lib/integration/react';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
 
 
@@ -12,9 +9,7 @@ import DeckList from "./components/DeckList";
 import AddDeck from "./components/AddDeck";
 import Deck from "./components/Deck";
 import AddQuestion from "./components/AddQuestion";
-
-const store = createStore(reducers, middleware);
-
+import {persistor, store} from "./store";
 
 const MainNavigator = createStackNavigator({
         DeckList: {
@@ -52,10 +47,6 @@ export default class App extends React.Component {
         this.setState({ isReady: true });
     }
 
-    componentDidMount() {
-      store.dispatch(handleInitialDecks())
-    }
-
   render() {
       if (!this.state.isReady) {
           return <Expo.AppLoading />;
@@ -63,10 +54,11 @@ export default class App extends React.Component {
 
       return (
         <Provider store={store}>
-            <View style={styles.container}>
-                <AppContainer uriPrefix="/app" style={{flex:1}}/>
-            </View>
-
+            <PersistGate loading={null} persistor={persistor}>
+                <View style={styles.container}>
+                    <AppContainer uriPrefix="/app" style={{flex:1}}/>
+                </View>
+            </PersistGate>
         </Provider>
       )
 

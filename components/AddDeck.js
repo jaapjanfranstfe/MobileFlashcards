@@ -9,7 +9,7 @@ import {
     Item
 } from "native-base";
 import {connect} from "react-redux";
-import {handleAddDeck} from "../actions/decks";
+import {addDeck} from "../actions/decks";
 
 class AddDeck extends React.Component {
 
@@ -27,7 +27,9 @@ class AddDeck extends React.Component {
     handleSubmit = () => {
         const { dispatch, navigation } = this.props;
 
-        dispatch(handleAddDeck(this.state.title));
+        dispatch(addDeck({
+            title: this.state.title
+        }));
 
         this.setState({
             title: ''
