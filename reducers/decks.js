@@ -1,4 +1,4 @@
-import {ADD_DECK, ADD_DECK_QUESTION, RECEIVE_DECKS, REMOVE_DECK} from "../actions/decks";
+import {ADD_DECK, ADD_DECK_CARD, REMOVE_DECK} from "../actions/decks";
 // DEEP COPY CREATE, FIND POUT WHERE SAVE DECK FROM STORAGE IS USED INSTEAD OF FROM STORE
 export default function decks (state = {}, action) {
     switch (action.type) {
@@ -10,18 +10,18 @@ export default function decks (state = {}, action) {
                 [deck.id]: deck
             };
         }
-        case ADD_DECK_QUESTION: {
-            const {question, deckId} = action;
+        case ADD_DECK_CARD: {
+            const {card, deckId} = action;
 
             const deck = {
                 ...state[deckId]
             };
 
-            const newQuestions = {
-                ...deck.questions
+            const newCards = {
+                ...deck.cards
             };
-            newQuestions[question.id] = question;
-            deck.questions = newQuestions;
+            newCards[card.id] = card;
+            deck.cards = newCards;
 
             return {
                 ...state,

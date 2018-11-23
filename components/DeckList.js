@@ -32,7 +32,7 @@ class DeckList extends React.Component {
                                 { deckId: deck.id }
                             )}>
                                 <Body>
-                                    <Text>{deck.title} {`(${Object.values(deck.questions).length} questions)`}</Text>
+                                    <Text>{deck.title} {`(${Object.values(deck.cards).length} cards)`}</Text>
                                 </Body>
                             </CardItem>
                         </Card>

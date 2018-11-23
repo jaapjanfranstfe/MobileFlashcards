@@ -8,8 +8,9 @@ import {createAppContainer, createStackNavigator} from 'react-navigation';
 import DeckList from "./components/DeckList";
 import AddDeck from "./components/AddDeck";
 import Deck from "./components/Deck";
-import AddQuestion from "./components/AddQuestion";
+import Quiz from "./components/Quiz";
 import {persistor, store} from "./store";
+import AddCard from "./components/AddCard";
 
 const MainNavigator = createStackNavigator({
         DeckList: {
@@ -18,11 +19,14 @@ const MainNavigator = createStackNavigator({
         AddDeck: {
             screen: AddDeck,
         },
-        AddQuestion: {
-            screen: AddQuestion,
+        AddCard: {
+            screen: AddCard,
         },
         Deck: {
             screen: Deck,
+        },
+        Quiz: {
+            screen: Quiz,
         },
     },
 {

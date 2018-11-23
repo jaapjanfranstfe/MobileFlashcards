@@ -20,12 +20,18 @@ class Deck extends React.Component {
         return (
             <Container>
                 <Content padder>
-                    <Text>{deck.title}</Text>
+                    <Text>{deck.title} {`(${Object.values(deck.cards).length} cards)`}</Text>
                     <Button block onPress={() => navigation.navigate(
-                        'AddQuestion',
+                        'Quiz',
                         { deckId: deck.id }
                     )}>
-                        <Text> Add question </Text>
+                        <Text> Start quiz </Text>
+                    </Button>
+                    <Button block onPress={() => navigation.navigate(
+                        'AddCard',
+                        { deckId: deck.id }
+                    )}>
+                        <Text> Add Card </Text>
                     </Button>
 
 

@@ -9,7 +9,7 @@ import {
     Item
 } from "native-base";
 import {connect} from "react-redux";
-import {addDeckQuestion} from "../actions/decks";
+import {addDeckCard} from "../actions/decks";
 
 class AddDeck extends React.Component {
 
@@ -37,7 +37,7 @@ class AddDeck extends React.Component {
     handleSubmit = () => {
         const { dispatch, navigation } = this.props;
 
-        dispatch(addDeckQuestion({
+        dispatch(addDeckCard({
             ...this.state,
             deckId: navigation.state.params.deckId
         }));
@@ -72,7 +72,7 @@ class AddDeck extends React.Component {
                     <Item regular>
                         <Input onChangeText={this.handleAnswerChange} placeholder="Answer" value={this.state.answer}/>
                     </Item>
-                    <Button block disabled={this.state.question === '' && this.state.answer === null} onPress={this.handleSubmit}><Text> Add question </Text></Button>
+                    <Button block disabled={this.state.question === '' && this.state.answer === null} onPress={this.handleSubmit}><Text> Save card </Text></Button>
                     <Button bordered block onPress={this.handleCancel}><Text> Cancel </Text></Button>
                 </Content>
             </Container>

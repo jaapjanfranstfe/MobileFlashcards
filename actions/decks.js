@@ -1,15 +1,14 @@
 import uuidv1 from "uuid/v1"
 
-export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const ADD_DECK = 'ADD_DECK';
-export const ADD_DECK_QUESTION = 'ADD_DECK_QUESTION';
+export const ADD_DECK_CARD = 'ADD_DECK_CARD';
 export const REMOVE_DECK = 'REMOVE_DECK';
 
 export function addDeck(deckData) {
     const deck = {
         title: deckData.title,
         id: uuidv1(),
-        questions: {}
+        cards: {}
     };
 
     return {
@@ -18,17 +17,17 @@ export function addDeck(deckData) {
     }
 }
 
-export function addDeckQuestion(questionData) {
-    const question = {
+export function addDeckCard(cardData) {
+    const card = {
         id: uuidv1(),
-        question: questionData.question,
-        answer: questionData.answer
+        question: cardData.question,
+        answer: cardData.answer
     };
 
     return {
-        type: ADD_DECK_QUESTION,
-        question,
-        deckId: questionData.deckId,
+        type: ADD_DECK_CARD,
+        card,
+        deckId: cardData.deckId,
     }
 }
 
