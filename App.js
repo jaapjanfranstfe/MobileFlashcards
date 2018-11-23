@@ -10,6 +10,8 @@ import {createAppContainer, createStackNavigator} from 'react-navigation';
 
 import DeckList from "./components/DeckList";
 import AddDeck from "./components/AddDeck";
+import Deck from "./components/Deck";
+import AddQuestion from "./components/AddQuestion";
 
 const store = createStore(reducers, middleware);
 
@@ -20,6 +22,12 @@ const MainNavigator = createStackNavigator({
         },
         AddDeck: {
             screen: AddDeck,
+        },
+        AddQuestion: {
+            screen: AddQuestion,
+        },
+        Deck: {
+            screen: Deck,
         },
     },
 {

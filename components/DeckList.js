@@ -9,7 +9,7 @@ import {
     Content,
     Body,
     Fab,
-    Icon,View
+    Icon,
 } from "native-base";
 
 class DeckList extends React.Component {
@@ -27,9 +27,12 @@ class DeckList extends React.Component {
 
                     {decksArray.map(deck => (
                         <Card key={deck.id}>
-                            <CardItem>
+                            <CardItem button onPress={() => this.props.navigation.navigate(
+                                'Deck',
+                                { deckId: deck.id }
+                            )}>
                                 <Body>
-                                <Text>{deck.title}</Text>
+                                    <Text>{deck.title} {`(${deck.questions.length} questions)`}</Text>
                                 </Body>
                             </CardItem>
                         </Card>

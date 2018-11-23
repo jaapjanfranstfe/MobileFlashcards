@@ -7,7 +7,14 @@ export async function saveDeck(deck) {
 
     decks[deck.id] = deck;
     return AsyncStorage.setItem(DECKS, JSON.stringify(decks));
+}
 
+export async function saveDeckQuestion(questionData) {
+
+    const deck = decks[questionData.deckId];
+    console.log(questionData)
+    deck.questions.push(questionData);
+    return AsyncStorage.setItem(DECKS, JSON.stringify(decks));
 }
 
 export function deleteDeck(deckId) {
