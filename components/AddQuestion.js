@@ -53,7 +53,7 @@ class AddDeck extends React.Component {
     handleCancel = () => {
         const {navigation} = this.props;
 
-        this.state({
+        this.setState({
             question: '',
             answer: '',
         });
