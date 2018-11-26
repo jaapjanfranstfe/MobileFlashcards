@@ -21,17 +21,17 @@ class Deck extends React.Component {
             <Container>
                 <Content padder>
                     <Text>{deck.title} {`(${Object.values(deck.cards).length} cards)`}</Text>
+                    <Button block bordered onPress={() => navigation.navigate(
+                        'AddCard',
+                        { deckId: deck.id }
+                    )}>
+                        <Text> Add Card </Text>
+                    </Button>
                     <Button block onPress={() => navigation.navigate(
                         'Quiz',
                         { deckId: deck.id }
                     )}>
                         <Text> Start quiz </Text>
-                    </Button>
-                    <Button block onPress={() => navigation.navigate(
-                        'AddCard',
-                        { deckId: deck.id }
-                    )}>
-                        <Text> Add Card </Text>
                     </Button>
 
 

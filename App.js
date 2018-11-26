@@ -8,7 +8,7 @@ import {createAppContainer, createStackNavigator} from 'react-navigation';
 import DeckList from "./components/DeckList";
 import AddDeck from "./components/AddDeck";
 import Deck from "./components/Deck";
-import Quiz from "./components/Quiz";
+import Quiz from "./components/quiz/Quiz";
 import {persistor, store} from "./store";
 import AddCard from "./components/AddCard";
 
