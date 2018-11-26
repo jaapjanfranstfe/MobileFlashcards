@@ -13,6 +13,7 @@ import {
 } from "native-base";
 import QuizResult from "./QuizResult";
 import QuizQuestion from "./QuizQuestion";
+import {handleFinishedAQuiz} from "../../actions/quiz";
 
 class Quiz extends React.Component {
 
@@ -22,12 +23,18 @@ class Quiz extends React.Component {
     };
 
     quizQuestionAnswered = (answeredCorrectly) => {
+        const { dispatch } = this.props;
         const newScore = answeredCorrectly ? this.state.score + 1 : this.state.score;
+        const newIndex = this.state.currentcardIndex + 1;
 
         this.setState({
-            currentcardIndex: this.state.currentcardIndex + 1,
+            currentcardIndex: newIndex,
             score: newScore,
         });
+
+        if(newIndex >= Object.values(this.props.deck.cards).length) {
+            dispatch(handleFinishedAQuiz(Date.now()));
+        }
     };
 
     resetQuiz = (wantsToRetry) => {

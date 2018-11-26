@@ -1,6 +1,5 @@
 import {ADD_DECK, ADD_DECK_CARD, REMOVE_DECK} from "../actions/decks";
-import uuidv1 from "uuid/v1";
-// DEEP COPY CREATE, FIND POUT WHERE SAVE DECK FROM STORAGE IS USED INSTEAD OF FROM STORE
+
 export default function decks (state = {}, action) {
     switch (action.type) {
         case ADD_DECK: {

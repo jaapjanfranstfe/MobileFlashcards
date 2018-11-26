@@ -41,6 +41,12 @@ export default class App extends React.Component {
     };
 
 
+    componentDidMount() {
+        const { quiz } = this.store;
+        const currentDate = this.
+        if(quiz.lastFinishedQuizDate)
+    }
+
     async componentWillMount() {
         await Expo.Font.loadAsync({
             Roboto: require("native-base/Fonts/Roboto.ttf"),
