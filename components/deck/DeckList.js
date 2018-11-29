@@ -11,6 +11,7 @@ import {
     Fab,
     Icon,
 } from "native-base";
+import {DeckListItem} from "./DeckListItem";
 
 class DeckList extends React.Component {
     static navigationOptions = {
@@ -29,18 +30,12 @@ class DeckList extends React.Component {
                     }
 
                     {decksArray.map(deck => (
-                        <Card key={deck.id}>
-                            <CardItem button onPress={() => this.props.navigation.navigate(
-                                'Deck',
-                                { deckId: deck.id,
-                                  deckTitle: deck.title,
-                                }
-                            )}>
-                                <Body>
-                                    <Text>{deck.title} {`(${Object.values(deck.cards).length} cards)`}</Text>
-                                </Body>
-                            </CardItem>
-                        </Card>
+                        <DeckListItem title={deck.title} nrOfQuestions={Object.values(deck.cards).length} onPress={() => this.props.navigation.navigate(
+                            'Deck',
+                            { deckId: deck.id,
+                                deckTitle: deck.title,
+                            }
+                        )} key={deck.id}/>
                     ))}
 
                 </Content>
