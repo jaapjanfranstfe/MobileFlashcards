@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import {Provider} from "react-redux";
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
-
+import platformVariables from 'native-base/src/theme/variables/platform'
 
 import DeckList from "./components/deck/DeckList";
 import AddDeck from "./components/deck/AddDeck";
@@ -30,9 +30,18 @@ const MainNavigator = createStackNavigator({
             screen: Quiz,
         },
     },
-{
-    initialRouteName: 'DeckList'
-});
+    {
+        initialRouteName: 'DeckList',
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: platformVariables.brandPrimary,
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+        },
+    });
 
 const AppContainer = createAppContainer(MainNavigator);
 
