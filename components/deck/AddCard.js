@@ -65,17 +65,19 @@ class AddDeck extends React.Component {
     };
 
     render() {
+        const { question, answer } = this.state;
+        const canSave = question !== '' && answer !== '';
 
         return (
             <Container>
                 <Content padder>
                     <Item regular>
-                        <Input onChangeText={this.handleQuestionChange} placeholder="Question" value={this.state.question}/>
+                        <Input onChangeText={this.handleQuestionChange} placeholder="Question" value={question}/>
                     </Item>
                     <Item regular>
-                        <Input onChangeText={this.handleAnswerChange} placeholder="Answer" value={this.state.answer}/>
+                        <Input onChangeText={this.handleAnswerChange} placeholder="Answer" value={answer}/>
                     </Item>
-                    <Button block disabled={this.state.question === '' && this.state.answer === null} onPress={this.handleSubmit}><Text> Save card </Text></Button>
+                    <Button block disabled={!canSave} onPress={this.handleSubmit}><Text> Save card </Text></Button>
                     <Button bordered block onPress={this.handleCancel}><Text> Cancel </Text></Button>
                 </Content>
             </Container>

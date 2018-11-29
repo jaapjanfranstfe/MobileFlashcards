@@ -17,18 +17,18 @@ class Deck extends React.Component {
 
     render() {
         const { deck, navigation } = this.props;
-
+        const canStartQuiz = Object.values(deck.cards).length > 0;
         return (
             <Container>
                 <Content padder>
                     <Text>{deck.title} {`(${Object.values(deck.cards).length} cards)`}</Text>
-                    <Button block bordered onPress={() => navigation.navigate(
+                    <Button block bordered={canStartQuiz} onPress={() => navigation.navigate(
                         'AddCard',
                         { deckId: deck.id }
                     )}>
                         <Text> Add Card </Text>
                     </Button>
-                    <Button block onPress={() => navigation.navigate(
+                    <Button disabled={!canStartQuiz} block onPress={() => navigation.navigate(
                         'Quiz',
                         { deckId: deck.id }
                     )}>
