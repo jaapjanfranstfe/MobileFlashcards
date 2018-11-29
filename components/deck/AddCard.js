@@ -12,6 +12,9 @@ import {connect} from "react-redux";
 import {addDeckCard} from "../../actions/decks";
 
 class AddDeck extends React.Component {
+    static navigationOptions = {
+        title: 'Add Card',
+    };
 
     state = {
         question: '',

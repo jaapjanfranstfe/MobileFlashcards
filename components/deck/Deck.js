@@ -9,6 +9,11 @@ import {
 } from "native-base";
 
 class Deck extends React.Component {
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: navigation.getParam('deckTitle', 'Deck'),
+        };
+    };
 
     render() {
         const { deck, navigation } = this.props;

@@ -13,6 +13,9 @@ import {
 } from "native-base";
 
 class DeckList extends React.Component {
+    static navigationOptions = {
+        title: 'UdaciCards',
+    };
 
     render() {
         const { decks, navigation } = this.props;
@@ -29,7 +32,9 @@ class DeckList extends React.Component {
                         <Card key={deck.id}>
                             <CardItem button onPress={() => this.props.navigation.navigate(
                                 'Deck',
-                                { deckId: deck.id }
+                                { deckId: deck.id,
+                                  deckTitle: deck.title,
+                                }
                             )}>
                                 <Body>
                                     <Text>{deck.title} {`(${Object.values(deck.cards).length} cards)`}</Text>

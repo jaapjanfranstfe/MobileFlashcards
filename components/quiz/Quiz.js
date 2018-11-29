@@ -17,6 +17,9 @@ import {finishedAQuiz, handleFinishedAQuiz} from "../../actions/quiz";
 import {sameDay, setLocalNotification} from "../../utils/helpers";
 
 class Quiz extends React.Component {
+    static navigationOptions = {
+        title: 'Quiz',
+    };
 
     state = {
         currentcardIndex: 0,

@@ -40,7 +40,7 @@ class QuizQuestion extends React.Component {
                     <Fragment>
                         <Text>{card.answer}</Text>
                         <Button block onPress={() => this.handlerAnswerQuestion(true)}><Text> Correct </Text></Button>
-                        <Button block onPress={() => this.handlerAnswerQuestion(false)}><Text> Not correct </Text></Button>
+                        <Button block onPress={() => this.handlerAnswerQuestion(false)}><Text> Incorrect </Text></Button>
                     </Fragment>
                     )}
             </Content>
