@@ -53,17 +53,21 @@ export default class App extends React.Component {
     componentDidMount() {
         storedStatePromise
             .then((restoredState) => {
-                const { quiz } = restoredState
-                const {lastFinishedQuizDate} = quiz;
                 let currentDate = new Date();
 
-                if(lastFinishedQuizDate) {
-                    const lastFinishedQuizDateObject = new Date(lastFinishedQuizDate);
-                    if(sameDay(lastFinishedQuizDateObject, currentDate)) {
-                        currentDate.setDate(currentDate.getDate() + 1);
-                    }
+                if(restoredState) {
+                    const { quiz } = restoredState;
+                    const {lastFinishedQuizDate} = quiz;
 
+                    if(lastFinishedQuizDate) {
+                        const lastFinishedQuizDateObject = new Date(lastFinishedQuizDate);
+                        if(sameDay(lastFinishedQuizDateObject, currentDate)) {
+                            currentDate.setDate(currentDate.getDate() + 1);
+                        }
+
+                    }
                 }
+
                 setLocalNotification(currentDate);
             });
 
