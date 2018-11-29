@@ -6,7 +6,7 @@ export function sameDay(date1, date2) {
         date1.getDate() === date2.getDate();
 }
 
-export function clearLocalNotifications () {
+function clearLocalNotifications () {
    return Notifications.cancelAllScheduledNotificationsAsync();
 }
 

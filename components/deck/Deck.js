@@ -4,12 +4,8 @@ import React from 'react';
 import {
     Text,
     Container,
-    Card,
-    CardItem,
     Content,
-    Body,
-    Fab,
-    Icon, View, Button
+    Button
 } from "native-base";
 
 class Deck extends React.Component {

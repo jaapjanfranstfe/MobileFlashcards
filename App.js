@@ -5,12 +5,12 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
 
 
-import DeckList from "./components/DeckList";
-import AddDeck from "./components/AddDeck";
-import Deck from "./components/Deck";
+import DeckList from "./components/deck/DeckList";
+import AddDeck from "./components/deck/AddDeck";
+import Deck from "./components/deck/Deck";
 import Quiz from "./components/quiz/Quiz";
 import {persistor, store, storedStatePromise} from "./store";
-import AddCard from "./components/AddCard";
+import AddCard from "./components/deck/AddCard";
 import {sameDay, setLocalNotification} from "./utils/helpers";
 
 const MainNavigator = createStackNavigator({
@@ -48,11 +48,9 @@ export default class App extends React.Component {
                 const {lastFinishedQuizDate} = quiz;
                 let currentDate = new Date();
 
-                console.log('YOOO:', quiz.lastFinishedQuizDate)
                 if(lastFinishedQuizDate) {
                     const lastFinishedQuizDateObject = new Date(lastFinishedQuizDate);
                     if(sameDay(lastFinishedQuizDateObject, currentDate)) {
-                        console.log('Same day! schedule for tomorrow')
                         currentDate.setDate(currentDate.getDate() + 1);
                     }
 

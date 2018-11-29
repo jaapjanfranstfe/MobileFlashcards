@@ -9,7 +9,7 @@ import {
     Item
 } from "native-base";
 import {connect} from "react-redux";
-import {addDeckCard} from "../actions/decks";
+import {addDeckCard} from "../../actions/decks";
 
 class AddDeck extends React.Component {
 
