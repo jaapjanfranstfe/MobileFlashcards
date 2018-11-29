@@ -8,8 +8,8 @@ const QuizResult = ({ onReset, score, totalNrOfCards }) => {
 
     return <Content padder>
             <Text>{`Your score is ${percentage}%`}</Text>
-            <Button block onPress={() => onReset(true)}><Text> Retry </Text></Button>
-            <Button block onPress={() => onReset(false)}><Text> Go back to the deck </Text></Button>
+            <Button block onPress={() => onReset(true)}><Text> Restart Quiz </Text></Button>
+            <Button block onPress={() => onReset(false)}><Text> Back to Deck </Text></Button>
         </Content>
 };
 
