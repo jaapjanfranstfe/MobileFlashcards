@@ -1,6 +1,6 @@
 import {FINISHED_A_QUIZ} from '../actions/quiz'
 
-export default function decks (state = {lastFinishedQuizDate: null}, action) {
+export default function quiz (state = {lastFinishedQuizDate: null}, action) {
     switch (action.type) {
         case FINISHED_A_QUIZ: {
             return {

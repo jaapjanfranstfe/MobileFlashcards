@@ -9,8 +9,9 @@ import DeckList from "./components/DeckList";
 import AddDeck from "./components/AddDeck";
 import Deck from "./components/Deck";
 import Quiz from "./components/quiz/Quiz";
-import {persistor, store} from "./store";
+import {persistor, store, storedStatePromise} from "./store";
 import AddCard from "./components/AddCard";
+import {sameDay, setLocalNotification} from "./utils/helpers";
 
 const MainNavigator = createStackNavigator({
         DeckList: {
@@ -40,11 +41,26 @@ export default class App extends React.Component {
         isReady: false
     };
 
-
     componentDidMount() {
-        const { quiz } = this.store;
-        const currentDate = this.
-        if(quiz.lastFinishedQuizDate)
+        storedStatePromise
+            .then((restoredState) => {
+                const { quiz } = restoredState
+                const {lastFinishedQuizDate} = quiz;
+                let currentDate = new Date();
+
+                console.log('YOOO:', quiz.lastFinishedQuizDate)
+                if(lastFinishedQuizDate) {
+                    const lastFinishedQuizDateObject = new Date(lastFinishedQuizDate);
+                    if(sameDay(lastFinishedQuizDateObject, currentDate)) {
+                        console.log('Same day! schedule for tomorrow')
+                        currentDate.setDate(currentDate.getDate() + 1);
+                    }
+
+                }
+                setLocalNotification(currentDate);
+            });
+
+
     }
 
     async componentWillMount() {

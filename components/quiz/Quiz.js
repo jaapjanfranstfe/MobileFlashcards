@@ -13,7 +13,8 @@ import {
 } from "native-base";
 import QuizResult from "./QuizResult";
 import QuizQuestion from "./QuizQuestion";
-import {handleFinishedAQuiz} from "../../actions/quiz";
+import {finishedAQuiz, handleFinishedAQuiz} from "../../actions/quiz";
+import {sameDay, setLocalNotification} from "../../utils/helpers";
 
 class Quiz extends React.Component {
 
@@ -33,7 +34,11 @@ class Quiz extends React.Component {
         });
 
         if(newIndex >= Object.values(this.props.deck.cards).length) {
-            dispatch(handleFinishedAQuiz(Date.now()));
+            dispatch(finishedAQuiz(new Date()));
+
+            let tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            setLocalNotification(tomorrow);
         }
     };
 

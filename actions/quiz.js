@@ -1,17 +1,11 @@
-import {timeToString} from "../utils/helpers";
+
 
 export const FINISHED_A_QUIZ = 'FINISHED_A_QUIZ';
 
-function finishedAQuiz(dateString) {
+export function finishedAQuiz(dateObject) {
+    const dateJsonString = dateObject.toJSON();
     return {
         type: FINISHED_A_QUIZ,
-        date: dateString
+        date: dateJsonString
     }
-}
-
-export function handleFinishedAQuiz(date) {
-
-    // TODO handle async notificion shizzle
-
-    finishedAQuiz(timeToString(date));
 }
