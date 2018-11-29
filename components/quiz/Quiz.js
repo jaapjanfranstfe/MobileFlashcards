@@ -1,20 +1,23 @@
 import {connect} from "react-redux";
 import React from 'react';
 
-import {
-    Text,
-    Container,
-    Card,
-    CardItem,
-    Content,
-    Body,
-    Fab,
-    Icon, View, Button
-} from "native-base";
+import { Container, Content } from "native-base";
 import QuizResult from "./QuizResult";
 import QuizQuestion from "./QuizQuestion";
 import {finishedAQuiz, handleFinishedAQuiz} from "../../actions/quiz";
 import {sameDay, setLocalNotification} from "../../utils/helpers";
+import {StyleSheet} from "react-native";
+
+const styles = StyleSheet.create({
+    centered: {
+        flex: 1,
+        alignItems: 'center'
+    },
+    padding: {
+        paddingTop: 10,
+        paddingBottom: 10
+    }
+});
 
 class Quiz extends React.Component {
     static navigationOptions = {
@@ -68,9 +71,11 @@ class Quiz extends React.Component {
         const quizIsFinished = currentcardIndex >= cardsArray.length;
 
         return (
-            <Container>
+            <Container styles={styles.centered}>
+                <Content padder>
                 {quizIsFinished && <QuizResult score={score} totalNrOfCards={cardsArray.length} onReset={this.resetQuiz}/>}
                 {!quizIsFinished && <QuizQuestion nrOfRemainingCards={nrOfRemainingCards} card={currentCard} onAnswered={this.quizQuestionAnswered}/>}
+                </Content>
             </Container>
         );
     }

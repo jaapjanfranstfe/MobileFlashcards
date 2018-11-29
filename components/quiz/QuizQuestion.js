@@ -1,8 +1,19 @@
 import React, {Fragment} from "react";
 import {
-    Button, View,
+    Button,
     Text, Content
 } from "native-base";
+import {StyleSheet} from "react-native";
+
+const styles = StyleSheet.create({
+    padding: {
+        paddingTop: 10,
+        paddingBottom: 10
+    },
+    marginBottom: {
+        marginBottom: 10,
+    }
+});
 
 class QuizQuestion extends React.Component {
 
@@ -25,25 +36,25 @@ class QuizQuestion extends React.Component {
     };
 
     render() {
-        const { nrOfRemainingCards, card, onAnswered} = this.props;
+        const { nrOfRemainingCards, card } = this.props;
         const { showAnswer } = this.state;
 
         return (
-            <Content>
+            <Fragment>
                 <Text>{`${nrOfRemainingCards} questions remaining`}</Text>
+                <Text style={styles.padding}>question: {card.question}</Text>
                 {!showAnswer ?   (
                     <Fragment>
-                        <Text>{card.question}</Text>
-                        <Button block onPress={this.handleShowAnswer}><Text> Show Answer </Text></Button>
+                        <Button style={styles.paddingBottom} block onPress={this.handleShowAnswer}><Text> Show Answer </Text></Button>
                     </Fragment>
                 ) : (
                     <Fragment>
-                        <Text>{card.answer}</Text>
-                        <Button block onPress={() => this.handlerAnswerQuestion(true)}><Text> Correct </Text></Button>
-                        <Button block onPress={() => this.handlerAnswerQuestion(false)}><Text> Incorrect </Text></Button>
+                        <Text style={styles.padding}>Answer: {card.answer}</Text>
+                        <Button style={styles.marginBottom} block onPress={() => this.handlerAnswerQuestion(true)} success><Text> Correct </Text></Button>
+                        <Button block onPress={() => this.handlerAnswerQuestion(false)} danger><Text> Incorrect </Text></Button>
                     </Fragment>
                     )}
-            </Content>
+            </Fragment>
 
         );
     }

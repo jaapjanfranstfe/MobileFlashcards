@@ -1,12 +1,27 @@
 import {connect} from "react-redux";
 import React from 'react';
-
 import {
+    H3,
     Text,
     Container,
     Content,
     Button
 } from "native-base";
+import {StyleSheet} from "react-native";
+
+const styles = StyleSheet.create({
+    centered: {
+        flex: 1,
+        alignItems: 'center'
+    },
+    padding: {
+        paddingTop: 10,
+        paddingBottom: 10
+    },
+    marginBottom: {
+        marginBottom: 10,
+    }
+});
 
 class Deck extends React.Component {
     static navigationOptions = ({ navigation }) => {
@@ -19,10 +34,10 @@ class Deck extends React.Component {
         const { deck, navigation } = this.props;
         const canStartQuiz = Object.values(deck.cards).length > 0;
         return (
-            <Container>
+            <Container style={styles.centered}>
                 <Content padder>
-                    <Text>{deck.title} {`(${Object.values(deck.cards).length} cards)`}</Text>
-                    <Button block bordered={canStartQuiz} onPress={() => navigation.navigate(
+                    <H3 style={styles.padding}>{deck.title} {`(${Object.values(deck.cards).length} cards)`}</H3>
+                    <Button style={styles.marginBottom} block bordered={canStartQuiz} onPress={() => navigation.navigate(
                         'AddCard',
                         { deckId: deck.id }
                     )}>
