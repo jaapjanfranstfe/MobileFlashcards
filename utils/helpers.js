@@ -12,8 +12,8 @@ function clearLocalNotifications () {
 
 function createNotification () {
     return {
-        title: 'Practice with your flashcards',
-        body: "👋 Don't forget to train your brain using UdaciCards Mobile Flashcards!",
+        title: 'Practice with UdaciCards',
+        body: "👋 Don't forget to train your brain!",
         ios: {
             sound: true,
         },
